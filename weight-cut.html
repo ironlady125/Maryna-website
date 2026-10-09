@@ -10,6 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="alternate" hreflang="ru" href="weight-cut.html">
+  <link rel="alternate" hreflang="en" href="en/weight-cut.html">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -20,10 +22,11 @@
     <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul class="nav-links">
       <li><a href="index.html#about">Обо мне</a></li>
-      <li><a href="index.html#achievements">Достижения</a></li>
       <li><a href="index.html#programs">Тренировки</a></li>
       <li><a href="training.html">Подготовка ММА</a></li>
       <li><a href="weight-cut.html" class="active">Сгонка веса</a></li>
+      <li><a href="acl.html">Восстановление ACL</a></li>
+      <li><span class="lang-switch"><a href="weight-cut.html" class="current" hreflang="ru">RU</a><a href="en/weight-cut.html" hreflang="en">EN</a></span></li>
       <li><a href="index.html#contact" class="btn btn-primary">Записаться</a></li>
     </ul>
   </div>
@@ -149,7 +152,7 @@
         <p>Я рассчитаю индивидуальный протокол под ваш вес, категорию и время взвешивания, буду на связи каждый день сгонки и помогу правильно восстановиться к бою.</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px">
           <button class="btn btn-primary" data-buy="weight-cut">Сопровождение сгонки</button>
-          <button class="btn btn-outline" data-buy="consult">Консультация</button>
+          <button class="btn btn-outline" data-buy="weight-consult">Консультация по сгонке — $35</button>
         </div>
       </div>
     </article>
@@ -164,6 +167,8 @@
         <a href="index.html#about">Обо мне</a>
         <a href="index.html#programs">Тренировки</a>
         <a href="training.html">Подготовка ММА</a>
+        <a href="acl.html">Восстановление ACL</a>
+        <a href="en/weight-cut.html">English</a>
         <a href="index.html#contact">Контакты</a>
       </nav>
     </div>
@@ -179,7 +184,7 @@
     <h3 id="buy-title" style="font-size:1.8rem">Запись</h3>
     <div class="modal-product"></div>
     <form class="booking" novalidate>
-      <label>Формат<select name="product" data-products></select></label>
+      <label>Формат<select name="product" data-products data-default="weight-cut"></select></label>
       <label>Имя<input name="name" autocomplete="name" required placeholder="Ваше имя"></label>
       <label>Telegram / телефон / email<input name="contact" required placeholder="Как с вами связаться"></label>
       <label>Текущий вес, категория и дата взвешивания<textarea name="message" placeholder="Например: 61 кг, категория 57 кг, взвешивание 14 ноября"></textarea></label>

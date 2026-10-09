@@ -14,6 +14,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="alternate" hreflang="ru" href="index.html">
+  <link rel="alternate" hreflang="en" href="en/index.html">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -24,11 +26,11 @@
     <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul class="nav-links">
       <li><a href="#about">Обо мне</a></li>
-      <li><a href="#achievements">Достижения</a></li>
       <li><a href="#programs">Тренировки</a></li>
       <li><a href="training.html">Подготовка ММА</a></li>
       <li><a href="weight-cut.html">Сгонка веса</a></li>
-      <li><a href="#faq">Вопросы</a></li>
+      <li><a href="acl.html">Восстановление ACL</a></li>
+      <li><span class="lang-switch"><a href="index.html" class="current" hreflang="ru">RU</a><a href="en/index.html" hreflang="en">EN</a></span></li>
       <li><a href="#contact" class="btn btn-primary">Записаться</a></li>
     </ul>
   </div>
@@ -215,9 +217,14 @@
       <div class="section-head center reveal">
         <span class="eyebrow">Тренировки и консультации</span>
         <h2>Тренируйся с бойцом UFC</h2>
-        <p>Выберите формат — от разовой консультации до полной подготовки к бою. Все занятия проходят онлайн, из любой точки мира.</p>
+        <p>Выберите формат — от видеотренировки за $19 до полной подготовки к бою и восстановления после травмы ACL с физиотерапевтом. Все занятия онлайн, из любой точки мира.</p>
       </div>
+      <div class="tabs" id="pricing-tabs"></div>
       <div class="pricing" id="pricing-grid"><!-- Карточки создаются из js/config.js --></div>
+      <div class="pay-strip reveal">
+        <p>Принимаем к оплате</p>
+        <div class="pay-badges" id="pay-methods"></div>
+      </div>
     </div>
   </section>
 
@@ -245,7 +252,7 @@
         <h2>Секреты подготовки профессионалов</h2>
         <p>Бесплатные гайды о том, как на самом деле готовятся бойцы ММА: от тренировочного лагеря до дня взвешивания.</p>
       </div>
-      <div class="guides">
+      <div class="guides three">
         <a class="guide g1 reveal" href="training.html">
           <div class="chips"><span class="chip">Fight Camp</span><span class="chip">Сила</span><span class="chip">Выносливость</span><span class="chip">Техника</span></div>
           <h3>Как готовится боец ММА</h3>
@@ -256,6 +263,12 @@
           <div class="chips"><span class="chip">Водная загрузка</span><span class="chip">Натрий</span><span class="chip">Взвешивание</span><span class="chip">Восстановление</span></div>
           <h3>Сгонка веса на воде</h3>
           <p>Как бойцы UFC сбрасывают вес перед взвешиванием: протокол «загрузки водой» по дням, ошибки и правила безопасности.</p>
+          <span class="more">Читать гайд →</span>
+        </a>
+        <a class="guide g3 reveal" href="acl.html">
+          <div class="chips"><span class="chip">Колено</span><span class="chip">Дома</span><span class="chip">Физиотерапевт</span></div>
+          <h3>Восстановление ACL дома</h3>
+          <p>Реабилитация после разрыва передней крестообразной связки по фазам: упражнения, критерии перехода и возвращение в спорт.</p>
           <span class="more">Читать гайд →</span>
         </a>
       </div>
@@ -311,7 +324,15 @@
         </details>
         <details>
           <summary>Как происходит оплата?</summary>
-          <p>После заявки вы получите ссылку на безопасную онлайн-оплату картой. Пакеты тренировок оплачиваются заранее и действуют в течение указанного срока.</p>
+          <p>Любым удобным способом: банковская карта (Visa, Mastercard, Amex), Apple Pay, Google Pay, PayPal, Zelle, Venmo, Cash App, Wise, Monobank или криптовалюта USDT. Способ оплаты вы выбираете сразу после заявки.</p>
+        </details>
+        <details>
+          <summary>Кто проводит занятия по восстановлению ACL?</summary>
+          <p>Видеосессии по реабилитации колена проводит дипломированный физиотерапевт, а на этапе возвращения в спорт к работе подключаюсь я. Программа подбирается индивидуально, с учётом рекомендаций вашего хирурга.</p>
+        </details>
+        <details>
+          <summary>Как я получу видеотренировки?</summary>
+          <p>После оплаты я пришлю ссылку с доступом к видео. Доступ сохраняется навсегда — тренируйтесь в любое время и в любом месте.</p>
         </details>
       </div>
     </div>
@@ -351,7 +372,7 @@
         </div>
         <label>Ваша цель<textarea name="message" placeholder="Расскажите, чего хотите добиться: похудеть, научиться драться, подготовиться к бою…"></textarea></label>
         <label class="check"><input type="checkbox" required checked> Я согласен(на) на обработку персональных данных для связи со мной</label>
-        <button class="btn btn-primary" type="submit">Отправить заявку</button>
+        <button class="btn btn-primary" type="submit">Отправить заявку и оплатить</button>
         <div class="form-status" role="status"></div>
       </form>
     </div>
@@ -367,6 +388,8 @@
         <a href="#programs">Тренировки</a>
         <a href="training.html">Подготовка ММА</a>
         <a href="weight-cut.html">Сгонка веса</a>
+        <a href="acl.html">Восстановление ACL</a>
+        <a href="en/index.html">English</a>
         <a href="#contact">Контакты</a>
       </nav>
     </div>
@@ -388,7 +411,7 @@
       <label>Город / часовой пояс<input name="timezone" placeholder="Например: Варшава, GMT+1"></label>
       <label>Цель<textarea name="message" placeholder="Коротко о вашей цели"></textarea></label>
       <button class="btn btn-primary btn-block" type="submit">Перейти к оплате</button>
-      <p class="form-note">После заявки вы получите ссылку на оплату и подтверждение времени.</p>
+      <p class="form-note">Далее — выбор способа оплаты: карта, Apple Pay, Google Pay, PayPal, Zelle, Venmo, Cash App и другие.</p>
       <div class="form-status" role="status"></div>
     </form>
   </div>
