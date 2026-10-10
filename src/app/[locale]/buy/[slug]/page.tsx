@@ -8,8 +8,9 @@ import { formatPrice, lines, tr } from "@/lib/l10n";
 import { bundlePrograms } from "@/lib/catalog";
 import { startCheckout } from "@/lib/actions/shop";
 
-export default async function BuyPage({ params }: { params: Promise<{ locale: Locale; slug: string }> }) {
-  const { locale, slug } = await params;
+export default async function BuyPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+  const { locale: lc, slug } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   const [p] = await db.select().from(products).where(and(eq(products.slug, slug), eq(products.active, true))).limit(1);
   if (!p) notFound();

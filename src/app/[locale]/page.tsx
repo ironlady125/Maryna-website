@@ -17,8 +17,9 @@ import { Video } from "@/components/Video";
 import { Markdown } from "@/components/Markdown";
 import { CountUp } from "@/components/CountUp";
 
-export default async function Home({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: lc } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   const s = await getSettings();
   const h = s.home;
@@ -47,7 +48,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
           {isPublishable(heroVideo) && heroVideo.kind === "video" && heroVideo.isPublic ? (
             <video className="h-full w-full object-cover" src={mediaUrl(heroVideo.id)} autoPlay muted loop playsInline poster={heroVideo.posterId ? mediaUrl(heroVideo.posterId) : undefined} />
           ) : (
-            <Photo id={h.heroImageId} locale={locale} className="h-full w-full" imgClassName="object-[center_20%]" priority label={t.common.photoPlaceholder} />
+            <Photo id={h.heroImageId} locale={locale} className="h-full w-full" imgClassName="object-[center_20%]" priority label="" />
           )}
           <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/70 to-bg/10" />
           <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent" />

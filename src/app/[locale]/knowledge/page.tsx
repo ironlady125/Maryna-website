@@ -6,14 +6,16 @@ import { getArticles } from "@/lib/catalog";
 import { Photo } from "@/components/Photo";
 import { pageMeta } from "@/lib/seo";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: lc } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   return pageMeta(locale, "/knowledge", t.knowledge.title, t.knowledge.sub);
 }
 
-export default async function KnowledgePage({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export default async function KnowledgePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: lc } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   const arts = await getArticles();
   return (

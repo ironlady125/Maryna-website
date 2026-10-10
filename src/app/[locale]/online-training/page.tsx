@@ -7,14 +7,16 @@ import { getSettings } from "@/lib/settings";
 import { Photo } from "@/components/Photo";
 import { pageMeta } from "@/lib/seo";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: lc } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   return pageMeta(locale, "/online-training", t.online.title, t.online.sub);
 }
 
-export default async function OnlinePage({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export default async function OnlinePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: lc } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   const [sessions, faqs, s] = await Promise.all([getSessionProducts(), getFaqs(), getSettings()]);
   return (

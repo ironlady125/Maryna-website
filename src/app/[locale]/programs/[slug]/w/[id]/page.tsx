@@ -14,10 +14,11 @@ import { Photo } from "@/components/Photo";
 import { RoundTimer } from "@/components/RoundTimer";
 import { CompleteButton } from "@/components/CompleteButton";
 
-type P = { params: Promise<{ locale: Locale; slug: string; id: string }> };
+type P = { params: Promise<{ locale: string; slug: string; id: string }> };
 
 export async function generateMetadata({ params }: P) {
-  const { locale, slug, id } = await params;
+  const { locale: lc, slug, id } = await params;
+  const locale = lc as Locale;
   const p = await getProgram(slug);
   if (!p) return {};
   const w = (await getProgramContent(p.id)).find((x) => x.id === Number(id));
@@ -25,7 +26,8 @@ export async function generateMetadata({ params }: P) {
 }
 
 export default async function WorkoutPage({ params }: P) {
-  const { locale, slug, id } = await params;
+  const { locale: lc, slug, id } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   const p = await getProgram(slug);
   if (!p) notFound();

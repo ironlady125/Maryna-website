@@ -11,12 +11,13 @@ import { getUser } from "@/lib/auth";
 import { bookSession } from "@/lib/actions/shop";
 import { SlotPicker } from "@/components/SlotPicker";
 
-type P = { params: Promise<{ locale: Locale; slug: string }>; searchParams: Promise<{ taken?: string }> };
+type P = { params: Promise<{ locale: string; slug: string }>; searchParams: Promise<{ taken?: string }> };
 
 export const metadata = { robots: { index: false } };
 
 export default async function BookPage({ params, searchParams }: P) {
-  const { locale, slug } = await params;
+  const { locale: lc, slug } = await params;
+  const locale = lc as Locale;
   const { taken } = await searchParams;
   const t = getDict(locale);
   const [p] = await db

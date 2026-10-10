@@ -13,16 +13,18 @@ import { Photo } from "@/components/Photo";
 import { Video } from "@/components/Video";
 import { pageMeta } from "@/lib/seo";
 
-type P = { params: Promise<{ locale: Locale; slug: string }> };
+type P = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: P) {
-  const { locale, slug } = await params;
+  const { locale: lc, slug } = await params;
+  const locale = lc as Locale;
   const p = await getProgram(slug);
   return p ? pageMeta(locale, `/programs/${slug}`, tr(p, "title", locale), tr(p, "subtitle", locale)) : {};
 }
 
 export default async function ProgramPage({ params }: P) {
-  const { locale, slug } = await params;
+  const { locale: lc, slug } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   const p = await getProgram(slug);
   if (!p) notFound();
@@ -39,7 +41,7 @@ export default async function ProgramPage({ params }: P) {
   return (
     <>
       <section className="relative isolate overflow-hidden border-b border-line">
-        <Photo id={p.coverId} locale={locale} className="absolute inset-0 -z-10 h-full w-full opacity-50" label={tr(p, "title", locale)} />
+        <Photo id={p.coverId} locale={locale} className="absolute inset-0 -z-10 h-full w-full opacity-50" label="" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-bg via-bg/85 to-bg/30" />
         <div className="container-x grid gap-10 py-16 lg:grid-cols-[1fr_380px] lg:py-24">
           <div>

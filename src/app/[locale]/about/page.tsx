@@ -8,14 +8,16 @@ import { Photo } from "@/components/Photo";
 import { Markdown } from "@/components/Markdown";
 import { pageMeta } from "@/lib/seo";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: lc } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   return pageMeta(locale, "/about", t.about.title, t.footer.tagline);
 }
 
-export default async function AboutPage({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: lc } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   const [s, ach] = await Promise.all([getSettings(), getApprovedAchievements()]);
   return (

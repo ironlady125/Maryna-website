@@ -48,10 +48,10 @@ export function Placeholder({ className = "", label }: { className?: string; lab
             "radial-gradient(120% 80% at 80% 10%, color-mix(in srgb, var(--brand-accent) 45%, transparent), transparent 60%), radial-gradient(90% 70% at 0% 100%, color-mix(in srgb, var(--brand-lime) 14%, transparent), transparent 60%), repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.035) 14px 28px)",
         }}
       />
-      <div className="absolute inset-x-0 bottom-0 flex items-center gap-2 p-4 text-[11px] uppercase tracking-[0.2em] text-white/60">
+      {label && <div className="absolute inset-x-0 bottom-0 flex items-center gap-2 p-4 text-[11px] uppercase tracking-[0.2em] text-white/60">
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="9" cy="11" r="2" /><path d="m21 17-5-5-8 7" /></svg>
         {label}
-      </div>
+      </div>}
     </div>
   );
 }

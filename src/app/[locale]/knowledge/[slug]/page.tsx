@@ -8,18 +8,20 @@ import { tr } from "@/lib/l10n";
 import { Markdown } from "@/components/Markdown";
 import { pageMeta } from "@/lib/seo";
 
-type P = { params: Promise<{ locale: Locale; slug: string }> };
+type P = { params: Promise<{ locale: string; slug: string }> };
 const load = async (slug: string) =>
   (await db.select().from(articles).where(and(eq(articles.slug, slug), eq(articles.published, true))).limit(1))[0];
 
 export async function generateMetadata({ params }: P) {
-  const { locale, slug } = await params;
+  const { locale: lc, slug } = await params;
+  const locale = lc as Locale;
   const a = await load(slug);
   return a ? pageMeta(locale, `/knowledge/${slug}`, tr(a, "title", locale), tr(a, "excerpt", locale)) : {};
 }
 
 export default async function ArticlePage({ params }: P) {
-  const { locale, slug } = await params;
+  const { locale: lc, slug } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   const a = await load(slug);
   if (!a) notFound();

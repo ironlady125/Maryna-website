@@ -11,11 +11,12 @@ import { devCheckoutAllowed, getStripe, markOrderPaid, orderRef } from "@/lib/co
 import { formatInZone } from "@/lib/booking";
 import { chooseManual, payDev, payWithStripe, resetPaymentMethod } from "@/lib/actions/shop";
 
-type P = { params: Promise<{ locale: Locale; id: string }>; searchParams: Promise<{ session_id?: string }> };
+type P = { params: Promise<{ locale: string; id: string }>; searchParams: Promise<{ session_id?: string }> };
 export const metadata = { robots: { index: false } };
 
 export default async function CheckoutPage({ params, searchParams }: P) {
-  const { locale, id } = await params;
+  const { locale: lc, id } = await params;
+  const locale = lc as Locale;
   const { session_id } = await searchParams;
   const t = getDict(locale);
   const user = await getUser();

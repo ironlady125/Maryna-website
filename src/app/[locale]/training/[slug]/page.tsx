@@ -11,16 +11,18 @@ import { Photo } from "@/components/Photo";
 import { pageMeta } from "@/lib/seo";
 import { formatPrice } from "@/lib/l10n";
 
-type P = { params: Promise<{ locale: Locale; slug: string }> };
+type P = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: P) {
-  const { locale, slug } = await params;
+  const { locale: lc, slug } = await params;
+  const locale = lc as Locale;
   const c = await getCategory(slug);
   return c ? pageMeta(locale, `/training/${slug}`, tr(c, "title", locale), tr(c, "subtitle", locale)) : {};
 }
 
 export default async function CategoryPage({ params }: P) {
-  const { locale, slug } = await params;
+  const { locale: lc, slug } = await params;
+  const locale = lc as Locale;
   const t = getDict(locale);
   const c = await getCategory(slug);
   if (!c) notFound();
@@ -39,7 +41,7 @@ export default async function CategoryPage({ params }: P) {
   return (
     <>
       <section className="relative isolate overflow-hidden border-b border-line">
-        <Photo id={c.coverId} locale={locale} className="absolute inset-0 -z-10 h-full w-full opacity-60" label={tr(c, "title", locale)} />
+        <Photo id={c.coverId} locale={locale} className="absolute inset-0 -z-10 h-full w-full opacity-60" label="" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-bg via-bg/80 to-transparent" />
         <div className="container-x py-20 sm:py-28">
           <Link href={`/${locale}/training`} className="text-sm uppercase tracking-widest text-muted hover:text-ink">← {t.training.title}</Link>

@@ -20,7 +20,7 @@ export function CategoryCard({ c, locale, index }: { c: Category; locale: Locale
   const href = c.kind === "service" ? `/${locale}/online-training` : `/${locale}/training/${c.slug}`;
   return (
     <Link href={href} className="reveal group relative block overflow-hidden rounded-2xl border border-line bg-surface">
-      <Photo id={c.coverId} locale={locale} className="aspect-[4/5] w-full" imgClassName="transition duration-700 group-hover:scale-105" label={tr(c, "title", locale)} />
+      <Photo id={c.coverId} locale={locale} className="aspect-[4/5] w-full" imgClassName="transition duration-700 group-hover:scale-105" label="" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 p-5">
         <div className="font-display text-sm text-lime">{String(index + 1).padStart(2, "0")}</div>

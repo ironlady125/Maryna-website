@@ -17,7 +17,8 @@ export async function completeWorkout(workoutId: number, seconds: number) {
     userId: u.id,
     workoutId: w.id,
     programId: w.programId,
-    seconds: Math.max(0, Math.min(Math.round(seconds) || w.minutes * 60, 4 * 3600)),
+    // Count the planned workout length; fall back to time on page when the workout has no duration.
+    seconds: w.minutes > 0 ? w.minutes * 60 : Math.max(0, Math.min(Math.round(seconds), 4 * 3600)),
   });
   revalidatePath("/[locale]/account", "page");
   return { ok: true as const };

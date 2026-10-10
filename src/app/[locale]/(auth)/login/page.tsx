@@ -4,8 +4,9 @@ import { LoginForm } from "@/components/AuthForms";
 
 export const metadata = { robots: { index: false } };
 
-export default async function Page({ params, searchParams }: { params: Promise<{ locale: Locale }>; searchParams: Promise<{ next?: string; token?: string }> }) {
-  const { locale } = await params;
+export default async function Page({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<{ next?: string; token?: string }> }) {
+  const { locale: lc } = await params;
+  const locale = lc as Locale;
   const sp = await searchParams;
   const t = getDict(locale);
   return (

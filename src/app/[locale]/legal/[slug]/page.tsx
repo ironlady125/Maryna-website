@@ -6,17 +6,19 @@ import { tr } from "@/lib/l10n";
 import { Markdown } from "@/components/Markdown";
 import { pageMeta } from "@/lib/seo";
 
-type P = { params: Promise<{ locale: Locale; slug: string }> };
+type P = { params: Promise<{ locale: string; slug: string }> };
 const load = async (slug: string) => (await db.select().from(legalPages).where(eq(legalPages.slug, slug)).limit(1))[0];
 
 export async function generateMetadata({ params }: P) {
-  const { locale, slug } = await params;
+  const { locale: lc, slug } = await params;
+  const locale = lc as Locale;
   const l = await load(slug);
   return l ? pageMeta(locale, `/legal/${slug}`, tr(l, "title", locale), tr(l, "title", locale)) : {};
 }
 
 export default async function LegalPage({ params }: P) {
-  const { locale, slug } = await params;
+  const { locale: lc, slug } = await params;
+  const locale = lc as Locale;
   const l = await load(slug);
   if (!l) notFound();
   return (
