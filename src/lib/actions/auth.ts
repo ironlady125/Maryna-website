@@ -13,7 +13,7 @@ const safeNext = (n: FormDataEntryValue | null, locale: Locale) => {
   const s = String(n || "");
   return s.startsWith("/") && !s.startsWith("//") ? s : `/${locale}/account`;
 };
-const site = () => (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+const site = () => (process.env.SITE_URL || process.env.RENDER_EXTERNAL_URL || "http://localhost:3000").replace(/\/$/, "");
 
 export async function login(_: State, fd: FormData): Promise<State> {
   const locale = loc(fd.get("locale"));

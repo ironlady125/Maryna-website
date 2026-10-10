@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/i18n/config";
 
-const base = () => (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+const base = () => (process.env.SITE_URL || process.env.RENDER_EXTERNAL_URL || "http://localhost:3000").replace(/\/$/, "");
 
 /** Language-specific metadata with hreflang alternates. `path` is the route without the locale prefix. */
 export function pageMeta(locale: Locale, path: string, title: string, description: string): Metadata {

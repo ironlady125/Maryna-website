@@ -44,7 +44,7 @@ export async function verifyToken(token: string) {
 export const sessionCookieOptions = {
   httpOnly: true,
   sameSite: "lax" as const,
-  secure: process.env.NODE_ENV === "production" && (process.env.SITE_URL || "").startsWith("https"),
+  secure: process.env.NODE_ENV === "production" && (process.env.SITE_URL || process.env.RENDER_EXTERNAL_URL || "").startsWith("https"),
   path: "/",
   maxAge: MAX_AGE,
 };

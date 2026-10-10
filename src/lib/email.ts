@@ -30,7 +30,7 @@ export async function sendEmail(to: string, subject: string, body: string) {
   await db.insert(emails).values({ to, subject, body, status, error });
 }
 
-const site = () => (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+const site = () => (process.env.SITE_URL || process.env.RENDER_EXTERNAL_URL || "http://localhost:3000").replace(/\/$/, "");
 
 type Tpl = { subject: string; body: string };
 const T: Record<string, Record<Locale, (v: Record<string, string>) => Tpl>> = {

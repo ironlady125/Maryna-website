@@ -11,7 +11,7 @@ import { formatPrice, tr } from "@/lib/l10n";
 import { getSettings, MANUAL_METHODS, type ManualMethodKey } from "@/lib/settings";
 
 const loc = (v: FormDataEntryValue | null): Locale => (isLocale(v) ? v : "en");
-const site = () => (process.env.SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+const site = () => (process.env.SITE_URL || process.env.RENDER_EXTERNAL_URL || "http://localhost:3000").replace(/\/$/, "");
 
 async function loadOwnOrder(orderId: number) {
   const u = await getUser();

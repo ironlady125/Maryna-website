@@ -58,7 +58,19 @@ npm run dev                 # http://localhost:3000
 Пока Stripe не подключён и `ALLOW_DEV_CHECKOUT=true`, на странице оплаты есть кнопка «Тестовая оплата» —
 можно пройти весь путь покупки. **В продакшене обязательно уберите `ALLOW_DEV_CHECKOUT`.**
 
-## Публикация
+## Публикация в интернете (самый простой способ — Render, ~7 $/мес + диск)
+
+1. Смёрджите PR в ветку `main` на GitHub.
+2. Откройте ссылку и войдите через GitHub:
+   **https://render.com/deploy?repo=https://github.com/ironlady125/Maryna-website**
+3. Render прочитает файл `render.yaml` и попросит заполнить: `ADMIN_EMAIL` и `ADMIN_PASSWORD` (вход в админку),
+   по желанию — ключи Stripe и почту. Нажмите **Apply**.
+4. Через 5–10 минут сайт будет доступен по адресу вида `https://maryna-moroz-fitness.onrender.com`.
+   Свой домен (например, `marynamoroz.com`) подключается в Render → Settings → Custom Domains.
+
+Файл `Dockerfile` подходит и для Railway, Fly.io или любого сервера с Docker — главное, подключить постоянный диск к папке `/data`.
+
+## Публикация вручную
 
 Сайт хранит базу и загруженные видео на диске, поэтому нужен хостинг с постоянным диском (Node.js):
 **Railway, Render, Fly.io или любой VPS**. Vercel/Netlify без доработки не подойдут — там нет постоянного диска
